@@ -25,10 +25,7 @@ analyzeresults = (results) ->
       response = '<div class="message">' + result["username"] + ": " + result["content"] + "</div>"
       $('.messages').append(response)
 
-
-
 # Begin function calls
-
 initial()
 
 window.setInterval( () -> 
