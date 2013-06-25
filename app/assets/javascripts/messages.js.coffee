@@ -1,21 +1,36 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+# Set initial Variables
+currentids = []
+refresh_timer = 5000
 
-refreshpage = -> 
+# Fills currentids array with the currently loaded ids
+initial = ->
   $.getJSON('/messages', (data) -> 
-    results = data
-    analyzeresults(results)
+    for result in data
+      id = result["id"]
+      currentids.push(id)
+    )
+
+# Gets the JSON data and sends it to be analyzed
+getdata = -> 
+  $.getJSON('/messages', (data) -> 
+    analyzeresults(data)
   )
 
+# Checks if the message is already listed, if not, it appends it.
 analyzeresults = (results) ->
-  $('.messages').children().remove()
   for result in results
-    response = '<div class="message">' + result["username"] + ": " + result["content"] + "</div>"
-    $('.messages').append(response)
+    id = result["id"]
+    if $.inArray(id,currentids) is -1 # -1 means not found.
+      currentids.push(id)
+      response = '<div class="message">' + result["username"] + ": " + result["content"] + "</div>"
+      $('.messages').append(response)
 
 
 
-window.setInterval( ()-> 
-  refreshpage()
-, 5000);
+# Begin function calls
+
+initial()
+
+window.setInterval( () -> 
+  getdata()
+, refresh_timer);
