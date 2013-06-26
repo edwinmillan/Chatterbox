@@ -25,9 +25,24 @@ analyzeresults = (results) ->
       response = '<div class="message">' + result["username"] + ": " + result["content"] + "</div>"
       $('.messages').append(response)
 
-# Begin function calls
+submitform = ->
+  $('form#new_message').submit()
+  $('form#new_message')[0].reset()
+  getdata()
+
+# Begin function calls and event listeners
 initial()
 
-window.setInterval( () -> 
+$ ->
+  $('#submitbutton').click( ->
+      submitform()
+      )
+  $('#message_content').keypress((e) ->
+    if e.which is 13
+      submitform()
+    )
+  $('abbr').remove()
+
+window.setInterval( -> 
   getdata()
 , refresh_timer);

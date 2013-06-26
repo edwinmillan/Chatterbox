@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = Message.all
-
+    @message = Message.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @messages }
@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
   # GET /messages/new
   # GET /messages/new.json
   def new
-    @message = Message.new
+    #@message = Message.new
 
     respond_to do |format|
       format.html # new.html.erb

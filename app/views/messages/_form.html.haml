@@ -1,16 +1,5 @@
-= form_for @message do |f|
-  - if @message.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@message.errors.count, "error")} prohibited this message from being saved:"
-      %ul
-        - @message.errors.full_messages.each do |msg|
-          %li= msg
+= simple_form_for @message, remote: true do |f|
+  = f.input :username
+  = f.input :content
 
-  .field
-    = f.label :username
-    = f.text_field :username
-  .field
-    = f.label :content
-    = f.text_area :content
-  .actions
-    = f.submit 'Save'
+= link_to "Submit", "#", class: "btn", id: "submitbutton", remote: true
