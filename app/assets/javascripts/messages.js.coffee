@@ -29,6 +29,7 @@ submitform = ->
   $('form#new_message').submit()
   $('form#new_message')[0].reset()
   getdata()
+  return false
 
 # Begin function calls and event listeners
 initial()
