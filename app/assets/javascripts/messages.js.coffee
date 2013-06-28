@@ -28,6 +28,7 @@ analyzeresults = (results) ->
 submitform = ->
   $('form#new_message').submit()
   $('form#new_message')[0].reset()
+  $(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000);
   getdata()
   return false
 
@@ -43,6 +44,8 @@ $ ->
       submitform()
     )
   $('abbr').remove()
+  $(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000);
+
 
 window.setInterval( -> 
   getdata()

@@ -1,0 +1,27 @@
+@import "bootstrap";
+
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+  margin: 5px;
+  background:#ccc ;
+}
+.messages{
+  height: 80%;
+  width: 600px;
+  overflow: auto;
+  border: 5px, solid;
+  box-shadow: 5px 5px 10px;
+  background: white;
+}
+
+.message{
+  margin-left: 2px;
+}
+
+#message_content{
+  box-shadow: 5px 5px 10px;
+  width: 588px;
+}
