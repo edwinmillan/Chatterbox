@@ -36,6 +36,11 @@ submitform = ->
 initial()
 
 $ ->
+  faye = new Faye.Client('http://localhost:9292/faye');
+  faye.subscribe('/messages', (data) ->
+    alert data
+    )
+
   $('#submitbutton').click( ->
       submitform()
       )
@@ -45,8 +50,7 @@ $ ->
     )
   $('abbr').remove()
   $(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000);
-
-
-window.setInterval( -> 
-  getdata()
-, refresh_timer);
+  
+#window.setInterval( -> 
+#  getdata()
+#, refresh_timer);
